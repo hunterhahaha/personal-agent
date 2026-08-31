@@ -1,0 +1,54 @@
+"use client";
+
+import * as React from "react";
+import { cn } from "@/lib/utils";
+
+interface ScrollAreaProps extends React.HTMLAttributes<HTMLDivElement> {
+  orientation?: "vertical" | "horizontal";
+}
+
+function ScrollArea({
+  className,
+  children,
+  ...props
+}: ScrollAreaProps) {
+  return (
+    <div
+      data-slot="scroll-area"
+      className={cn(
+        "overflow-auto",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+function ScrollBar({
+  className,
+  orientation = "vertical",
+  ...props
+}: React.HTMLAttributes<HTMLDivElement> & { orientation?: "vertical" | "horizontal" }) {
+  return (
+    <div
+      data-slot="scroll-area-scrollbar"
+      data-orientation={orientation}
+      className={cn(
+        "flex touch-none p-px transition-colors select-none",
+        orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent",
+        orientation === "horizontal" && "h-2.5 w-full border-t border-t-transparent",
+        className
+      )}
+      {...props}
+    >
+      <div
+        data-slot="scroll-area-thumb"
+        className="relative flex-1 rounded-full bg-border"
+      />
+    </div>
+  );
+}
+
+export { ScrollArea, ScrollBar };

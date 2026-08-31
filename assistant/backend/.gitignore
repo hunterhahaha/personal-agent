@@ -1,0 +1,16 @@
+venv/
+__pycache__/
+*.py[cod]
+
+.env
+.pytest_cache/
+.hypothesis/
+
+assistant.db
+*.db
+*.sqlite
+*.sqlite3
+
+transcripts/
+sina_news.txt
+$null
